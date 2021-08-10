@@ -1,5 +1,7 @@
 package com.telecom.models;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -59,6 +61,23 @@ public class Device {
 
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(device_id, device_model, phoneNumber);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Device other = (Device) obj;
+		return device_id == other.device_id && device_model == other.device_model && phoneNumber == other.phoneNumber;
 	}
 	
 	

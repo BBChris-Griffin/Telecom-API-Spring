@@ -1,5 +1,7 @@
 package com.telecom.models;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -58,6 +60,23 @@ public class Plans {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(plansType, plans_id, price);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Plans other = (Plans) obj;
+		return Objects.equals(plansType, other.plansType) && plans_id == other.plans_id && price == other.price;
 	}
 	
 	

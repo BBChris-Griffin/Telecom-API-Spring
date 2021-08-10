@@ -1,5 +1,9 @@
 package com.telecom.data;
 
-public interface TelecomRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TelecomRepository extends JpaRepository<Users, Integer>{
 
 }

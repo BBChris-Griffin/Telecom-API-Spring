@@ -1,5 +1,10 @@
 package com.telecom.models;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +25,8 @@ public class Users {
 	private Plans plansId;
 	
 	@OneToMany
-	private Device device;
+	private List<Device> device= new LinkedList<>();
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -107,6 +113,28 @@ public class Users {
 	public String toString() {
 		return "Users [customerId=" + customerId + ", customerName=" + name + ", email=" + email + ", password="
 				+ password + "]";
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(customerId, email, name, password);
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Users other = (Users) obj;
+		return customerId == other.customerId && Objects.equals(email, other.email) && Objects.equals(name, other.name)
+				&& Objects.equals(password, other.password);
 	}
 	
 	

@@ -44,7 +44,6 @@ public class TelecomController {
 		
 
 	@GetMapping("/user")
-
 	public ResponseEntity<Users> find() {
 		System.out.println("GET called");
 		return new ResponseEntity<Users>(service.findById(1), HttpStatus.OK);
@@ -52,22 +51,21 @@ public class TelecomController {
 	
 	// find all users
 	@GetMapping("/users")
-		public List<Users> findAll(){
-		
-		return service.findAll();
-		
+	public ResponseEntity<List<Users>> findAll(){
+		return new ResponseEntity<List<Users>>(service.findAll(), HttpStatus.OK);
 	}
 	
 	@Transactional
-	@PutMapping(value = "/{id}")
-		public int update(@PathVariable("id") Integer id){
+	@PutMapping(value = "/{user_id}/{plan_id}")
+		public int update(@PathVariable("user_id") Integer user_id, 
+				@PathVariable("plan_id") Integer plan_id){
 		System.out.println("update called");
-		return service.UpdatePlan(id);
+		return service.UpdatePlan(user_id, plan_id);
 
 	}
 	
 
-	@PostMapping("Adduser")
+	@PostMapping("/Adduser")
 	public ResponseEntity<Users> save(@RequestBody @Valid Users user) {
 		System.out.println("POST called");
 		Users newUser = service.save(user);

@@ -29,16 +29,16 @@ public class Plans {
 	@Column
 	private String price;
 	
-	@OneToMany(mappedBy="plan", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	private Set<Users> users;
+//	@OneToMany(mappedBy="plan", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+//	private Set<Users> users;
 	
 
-	public Plans(int planId, String planType, String price, Set<Users> users) {
+	public Plans(int planId, String planType, String price /*, Set<Users> users*/) {
 		super();
 		this.planId = planId;
 		this.planType = planType;
 		this.price = price;
-		this.users = users;
+		//this.users = users;
 	}
 	
 	public Plans(int planId) {
@@ -96,12 +96,12 @@ public class Plans {
 		return Objects.equals(planType, other.planType) && planId == other.planId && price == other.price;
 	}
 
-	public Set<Users> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Set<Users> users) {
-		this.users = users;
-	}
+//	public Set<Users> getUsers() {
+//		return users;
+//	}
+//
+//	public void setUsers(Set<Users> users) {
+//		this.users = users;
+//	}
 	
 }

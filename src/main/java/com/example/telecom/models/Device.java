@@ -1,4 +1,4 @@
-package com.telecom.models;
+package com.example.telecom.models;
 
 import java.util.Objects;
 
@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -25,7 +26,12 @@ public class Device {
 	int phoneNumber;
 	
 	@ManyToOne
+	@JoinColumn(name="plan_id")
 	private Plans PlansId;
+	
+	@ManyToOne
+	@JoinColumn(name="customer_id")
+	private Users user;
 
 	public Device(int device_id, int device_model, int phoneNumber, Plans plansId) {
 		super();

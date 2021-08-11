@@ -34,22 +34,22 @@ public class TelecomService {
 	}
 	
 	
-	public List <Users> findAll() {
+	public List<Users> findAll() {
 		return repository.findAll();
 	}
 	
 	
-	public int  UpdatePlan(Integer id) {
+	public int  UpdatePlan(Integer user_id, Integer plan_id) {
 
-		if(id !=null) {
+		if(user_id != null) {
 			
-			return repository.setPlanIdFor(id,2);						
+			return repository.setPlanIdFor(plan_id, user_id);						
 			
 		}else {
 			System.out.println("please enter a value");
 			
 		}
-		return id;
+		return -1;
 		
 	}
 	

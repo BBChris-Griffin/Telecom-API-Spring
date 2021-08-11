@@ -29,60 +29,106 @@ public class Plans {
 	@Column
 	private String price;
 	
-//	@OneToMany(mappedBy="plan", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-//	private Set<Users> users;
+	@Column
+	private int num_of_lines;
+		
 	
+	@OneToMany (mappedBy="plan")
+	private Set<UsersPlan> usersplans = new HashSet<>();
 
-	public Plans(int planId, String planType, String price /*, Set<Users> users*/) {
-		super();
-		this.planId = planId;
-		this.planType = planType;
-		this.price = price;
-		//this.users = users;
-	}
 	
-	public Plans(int planId) {
-		super();
-		this.planId = planId;
-	}
-
+	
 	public Plans() {
 		super();
 	}
 
-	@Override
-	public String toString() {
-		return "Plans [plans_id=" + planId + ", plansType=" + planType + ", price=" + price + "]";
+	
+
+
+	public Plans(String planType, String price, int num_of_lines) {
+		super();
+		this.planType = planType;
+		this.price = price;
+		this.num_of_lines = num_of_lines;
 	}
+
+
+
+
+	public Plans(int planId, String planType, String price, int num_of_lines) {
+		super();
+		this.planId = planId;
+		this.planType = planType;
+		this.price = price;
+		this.num_of_lines = num_of_lines;
+	}
+
+
+
 
 	public int getPlanId() {
 		return planId;
 	}
 
+
+
+
 	public void setPlanId(int planId) {
 		this.planId = planId;
 	}
+
+
+
 
 	public String getPlanType() {
 		return planType;
 	}
 
+
+
+
 	public void setPlanType(String planType) {
 		this.planType = planType;
 	}
+
+
+
 
 	public String getPrice() {
 		return price;
 	}
 
+
+
+
 	public void setPrice(String price) {
 		this.price = price;
 	}
 
+
+
+
+	public int getNum_of_lines() {
+		return num_of_lines;
+	}
+
+
+
+
+	public void setNum_of_lines(int num_of_lines) {
+		this.num_of_lines = num_of_lines;
+	}
+
+
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(planType, planId, price);
+		return Objects.hash(num_of_lines, planId, planType, price);
 	}
+
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -93,15 +139,22 @@ public class Plans {
 		if (getClass() != obj.getClass())
 			return false;
 		Plans other = (Plans) obj;
-		return Objects.equals(planType, other.planType) && planId == other.planId && price == other.price;
+		return num_of_lines == other.num_of_lines && planId == other.planId && Objects.equals(planType, other.planType)
+				&& Objects.equals(price, other.price);
 	}
 
-//	public Set<Users> getUsers() {
-//		return users;
-//	}
-//
-//	public void setUsers(Set<Users> users) {
-//		this.users = users;
-//	}
+
+
+
+	@Override
+	public String toString() {
+		return "Plans [planId=" + planId + ", planType=" + planType + ", price=" + price + ", num_of_lines="
+				+ num_of_lines + "]";
+	}
+	
+	
+	
+
+
 	
 }

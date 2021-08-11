@@ -35,57 +35,38 @@ public class Users {
 	@Column
 	private String password;
 	
-	@ManyToOne(cascade = CascadeType.MERGE) 
-	@JoinColumn(name="plan_id")
-	private Plans plan;
+	@Column
+	private int estimated_price;
+	
+	@Column
+	private int total_plans;
+	
+	
+	
+	@OneToMany (mappedBy="user")
+	private Set<UsersPlan> usersplans = new HashSet<>();
 	
 	@OneToMany (mappedBy="user")
 	private Set<Device> device = new HashSet<>();
-	
-	
-	public Users() {
-		super();
-	}
 
+	public Users(int customerId, String name, String email, String password, int estimated_price, int total_plans) {
+		super();
+		this.customerId = customerId;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.estimated_price = estimated_price;
+		this.total_plans = total_plans;
+	}
 
 	public Users(int customerId) {
 		super();
 		this.customerId = customerId;
 	}
 
-
-	public Plans getPlan() {
-		return plan;
-	}
-
-
-	public void setPlan(Plans plan) {
-		this.plan = plan;
-	}
-
-
-	public Users(int customerId, String name, String email, String password) {
-		super();
-		this.customerId = customerId;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-	}
-	
-	public Users(String name, String email, String password, Plans plan) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		//this.setPlan(planId);
-		this.plan = plan;
-	}
-
-
 	public int getCustomerId() {
 		return customerId;
 	}
-
 
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
@@ -95,11 +76,9 @@ public class Users {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public String getEmail() {
 		return email;
@@ -109,43 +88,40 @@ public class Users {
 		this.email = email;
 	}
 
-
-
-
 	public String getPassword() {
 		return password;
 	}
 
-
-
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-//	public void setPlanId(int planId) {
-//		this.plan = new Plans(planId);
-//	}
-//
-//	public Plans getPlanId() {
-//		return plan;
-//	}
 
+	public int getEstimated_price() {
+		return estimated_price;
+	}
+
+	public void setEstimated_price(int estimated_price) {
+		this.estimated_price = estimated_price;
+	}
+
+	public Set<Device> getDevice() {
+		return device;
+	}
+
+	public void setDevice(Set<Device> device) {
+		this.device = device;
+	}
 
 	@Override
 	public String toString() {
-		return "Users [customerId=" + customerId + ", customerName=" + name + ", email=" + email + ", password="
-				+ password + "]";
+		return "Users [customerId=" + customerId + ", name=" + name + ", email=" + email + ", password=" + password
+				+ ", estimated_price=" + estimated_price + ", total_plans=" + total_plans + "]";
 	}
-
-
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(customerId, email, name, password);
+		return Objects.hash(customerId, device, email, estimated_price, name, password);
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -156,16 +132,19 @@ public class Users {
 		if (getClass() != obj.getClass())
 			return false;
 		Users other = (Users) obj;
-		return customerId == other.customerId && Objects.equals(email, other.email) && Objects.equals(name, other.name)
-				&& Objects.equals(password, other.password);
+		return customerId == other.customerId && Objects.equals(device, other.device)
+				&& Objects.equals(email, other.email) && estimated_price == other.estimated_price
+				&& Objects.equals(name, other.name) && Objects.equals(password, other.password);
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	public Users(String name, String email, String password, int estimated_price, int total_plans) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.estimated_price = estimated_price;
+		this.total_plans = total_plans;
+	}
 	
 	
 	

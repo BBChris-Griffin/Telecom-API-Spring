@@ -1,34 +1,49 @@
 package com.example.telecom.models;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="plan")
+@Table(name="Plan")
 public class Plans {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name="plan_id")
-	private int plans_id;
+	private int planId;
 	
-	@Column
-	private String plansType;
+	@Column (name="plan_type")
+	private String planType;
 
 	@Column
 	private String price;
+	
+	@OneToMany(mappedBy="plan", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	private Set<Users> users;
+	
 
-	public Plans(int plans_id, String plansType, String price) {
+	public Plans(int planId, String planType, String price, Set<Users> users) {
 		super();
-		this.plans_id = plans_id;
-		this.plansType = plansType;
+		this.planId = planId;
+		this.planType = planType;
 		this.price = price;
+		this.users = users;
+	}
+	
+	public Plans(int planId) {
+		super();
+		this.planId = planId;
 	}
 
 	public Plans() {
@@ -37,23 +52,23 @@ public class Plans {
 
 	@Override
 	public String toString() {
-		return "Plans [plans_id=" + plans_id + ", plansType=" + plansType + ", price=" + price + "]";
+		return "Plans [plans_id=" + planId + ", plansType=" + planType + ", price=" + price + "]";
 	}
 
-	public int getPlans_id() {
-		return plans_id;
+	public int getPlanId() {
+		return planId;
 	}
 
-	public void setPlans_id(int plans_id) {
-		this.plans_id = plans_id;
+	public void setPlanId(int planId) {
+		this.planId = planId;
 	}
 
-	public String getPlansType() {
-		return plansType;
+	public String getPlanType() {
+		return planType;
 	}
 
-	public void setPlansType(String plansType) {
-		this.plansType = plansType;
+	public void setPlanType(String planType) {
+		this.planType = planType;
 	}
 
 	public String getPrice() {
@@ -66,7 +81,7 @@ public class Plans {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(plansType, plans_id, price);
+		return Objects.hash(planType, planId, price);
 	}
 
 	@Override
@@ -78,10 +93,15 @@ public class Plans {
 		if (getClass() != obj.getClass())
 			return false;
 		Plans other = (Plans) obj;
-		return Objects.equals(plansType, other.plansType) && plans_id == other.plans_id && price == other.price;
+		return Objects.equals(planType, other.planType) && planId == other.planId && price == other.price;
 	}
-	
-	
-	
+
+	public Set<Users> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<Users> users) {
+		this.users = users;
+	}
 	
 }

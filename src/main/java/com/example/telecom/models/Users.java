@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,18 +34,18 @@ public class Users {
 	private String email;
 	@Column
 	private String password;
-	@ManyToOne 
+	
+	@ManyToOne(cascade = CascadeType.MERGE) 
 	@JoinColumn(name="plan_id")
-	private Plans plansId;
+	private Plans plan;
 	
 	@OneToMany (mappedBy="user")
-	private Set<Device> device;
+	private Set<Device> device = new HashSet<>();
 	
 	
 	public Users() {
 		super();
 	}
-
 
 
 	public Users(int customerId) {
@@ -52,14 +54,31 @@ public class Users {
 	}
 
 
+	public Plans getPlan() {
+		return plan;
+	}
 
 
-	public Users(int customerId, String customerName, String email, String password) {
+	public void setPlan(Plans plan) {
+		this.plan = plan;
+	}
+
+
+	public Users(int customerId, String name, String email, String password) {
 		super();
 		this.customerId = customerId;
-		this.name = customerName;
+		this.name = name;
 		this.email = email;
 		this.password = password;
+	}
+	
+	public Users(String name, String email, String password, Plans plan) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		//this.setPlan(planId);
+		this.plan = plan;
 	}
 
 
@@ -72,15 +91,13 @@ public class Users {
 		this.customerId = customerId;
 	}
 
-
-
-	public String getCustomerName() {
+	public String getName() {
 		return name;
 	}
 
 
-	public void setCustomerName(String customerName) {
-		this.name = customerName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -105,8 +122,14 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
+	
+//	public void setPlanId(int planId) {
+//		this.plan = new Plans(planId);
+//	}
+//
+//	public Plans getPlanId() {
+//		return plan;
+//	}
 
 
 	@Override

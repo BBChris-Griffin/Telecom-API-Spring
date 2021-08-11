@@ -24,7 +24,6 @@ public class TelecomService {
 	
 	
 	public Users findById(Integer id) {
-		System.out.println("Bruh");
 		Optional<Users> optional= repository.findById(id);
 		return optional.isPresent()? optional.get():null;
 		

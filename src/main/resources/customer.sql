@@ -3,8 +3,8 @@ create table user (
 	name VARCHAR(50) NOT NULL,
 	email VARCHAR(50) NOT NULL,
 	password VARCHAR(50) NOT NULL,
-    plan_id INT, 
-	foreign key (plan_id) references plan (plan_id)
+    plan_id INT NOT NULL, 
+	CONSTRAINT fk_plan foreign key (plan_id) references plan (plan_id)
 );
 insert into user (customer_id, name, email, password, plan_id) values (1, 'Bria Hillock', 'bhillock0@51.la', 'rGFtlTEpOnu', 1);
 insert into user (customer_id, name, email, password, plan_id) values (2, 'Ced Delouch', 'cdelouch1@dion.ne.jp', '52YVbYVl', 2);

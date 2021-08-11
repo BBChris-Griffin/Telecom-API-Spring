@@ -1,4 +1,5 @@
 package com.example.telecom.data;
+import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,7 +15,7 @@ public interface TelecomRepository extends JpaRepository<Users, Integer>{
 	@Modifying
 	//@Query("UPDATE User AS u set u.plan_id = ?1 where u.customer_id = ?2")
 	@Query(value ="UPDATE user AS u set u.plan_id = ?1 where u.customer_id = ?2", nativeQuery = true)
-	public Users setPlanIdFor(Integer plans_id,Integer user_id); 
+	public int setPlanIdFor(Integer plans_id,Integer user_id); 
 	
 //	
 //	@Modifying

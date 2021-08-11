@@ -1,15 +1,17 @@
-package com.telecom.models;
+package com.example.telecom.models;
 
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -18,14 +20,6 @@ import javax.persistence.Table;
 
 @Table(name="User")
 public class Users {
-	
-	
-	
-	@ManyToOne
-	private Plans plansId;
-	
-	@OneToMany
-	private List<Device> device= new LinkedList<>();
 	
 	
 	@Id
@@ -38,6 +32,12 @@ public class Users {
 	private String email;
 	@Column
 	private String password;
+	@ManyToOne 
+	@JoinColumn(name="plan_id")
+	private Plans plansId;
+	
+	@OneToMany (mappedBy="user")
+	private Set<Device> device;
 	
 	
 	public Users() {

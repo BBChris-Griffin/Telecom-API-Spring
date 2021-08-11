@@ -1,4 +1,4 @@
-package com.telecom.models;
+package com.example.telecom.models;
 
 import java.util.Objects;
 
@@ -7,22 +7,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="plan")
 public class Plans {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
+	@Column (name="plan_id")
 	private int plans_id;
 	
 	@Column
 	private String plansType;
 
 	@Column
-	private int price;
+	private String price;
 
-	public Plans(int plans_id, String plansType, int price) {
+	public Plans(int plans_id, String plansType, String price) {
 		super();
 		this.plans_id = plans_id;
 		this.plansType = plansType;
@@ -54,11 +56,11 @@ public class Plans {
 		this.plansType = plansType;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 

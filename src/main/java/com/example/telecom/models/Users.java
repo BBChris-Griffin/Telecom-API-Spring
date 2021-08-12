@@ -43,8 +43,15 @@ public class Users {
 	
 	
 	
+	
+	public Users() {
+		super();
+	}
+
 	@OneToMany (mappedBy="user")
 	private Set<UsersPlan> usersplans = new HashSet<>();
+	
+	
 	
 	@OneToMany (mappedBy="user")
 	private Set<Device> device = new HashSet<>();
@@ -58,7 +65,8 @@ public class Users {
 		this.estimated_price = estimated_price;
 		this.total_plans = total_plans;
 	}
-
+	
+	
 	public Users(int customerId) {
 		super();
 		this.customerId = customerId;
@@ -111,6 +119,18 @@ public class Users {
 	public void setDevice(Set<Device> device) {
 		this.device = device;
 	}
+	
+	
+
+	public int getTotal_plans() {
+		return total_plans;
+	}
+
+
+	public void setTotal_plans(int total_plans) {
+		this.total_plans = total_plans;
+	}
+
 
 	@Override
 	public String toString() {

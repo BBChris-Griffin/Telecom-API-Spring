@@ -23,8 +23,6 @@ public class Device {
 	@Column
 	int device_model;
 	
-	@Column
-	
 	
 	@ManyToOne
 	@JoinColumn(name="plan_id")
@@ -115,8 +113,7 @@ public class Device {
 		return "Device [phoneNumber=" + phoneNumber + ", device_model=" + device_model + "]";
 	}
 
-	
-	
+		
 
 	
 	

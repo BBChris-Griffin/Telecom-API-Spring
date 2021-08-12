@@ -24,7 +24,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.telecom.data.TelecomRepository;
 import com.example.telecom.models.Users;
+import com.example.telecom.services.DeviceService;
+import com.example.telecom.services.PlansService;
 import com.example.telecom.services.TelecomService;
+import com.example.telecom.services.UsersPlanService;
 
 @RestController
 
@@ -37,6 +40,15 @@ public class TelecomController {
 
 	@Autowired
 	private TelecomService service;
+	
+	@Autowired
+	private UsersPlanService userplanservice;
+	
+	@Autowired
+	private DeviceService deviceservice;
+	
+	@Autowired
+	private PlansService plansservice;
 	
 	public TelecomController() {
 		System.out.println("Controller Created");

@@ -10,7 +10,7 @@ import com.example.telecom.models.Device;
 public class DeviceService {
 	
 	@Autowired
-	private DeviceRepository deviceReposiotry;
+	private DeviceRepository deviceRepository;
 	
 	public DeviceService() {
 		
@@ -22,4 +22,8 @@ public class DeviceService {
 	}
 	
 
+	public int deleteDevice(String phoneNumber) {
+		deviceRepository.deleteByPhoneNumber(phoneNumber);
+		return 1;
+	}
 }

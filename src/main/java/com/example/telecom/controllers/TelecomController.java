@@ -121,4 +121,11 @@ public class TelecomController {
 		System.out.println("DELETE called");
 		return null;
 	}
+	
+	@Transactional
+	@DeleteMapping("/delete-device={phoneNumber}") 
+	public ResponseEntity<Integer> deleteDevice(@PathVariable("phoneNumber") String phoneNumber){
+		System.out.println("DELETE called");
+		return new ResponseEntity<>(deviceservice.deleteDevice(phoneNumber), HttpStatus.OK);
+	}
 }

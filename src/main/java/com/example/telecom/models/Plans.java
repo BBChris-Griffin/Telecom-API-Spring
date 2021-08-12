@@ -33,8 +33,11 @@ public class Plans {
 	private int num_of_lines;
 		
 	
-	@OneToMany (mappedBy="plan")
+	@OneToMany (fetch= FetchType.LAZY,mappedBy="plan", cascade=CascadeType.MERGE)
 	private Set<UsersPlan> usersplans = new HashSet<>();
+	
+	@OneToMany (fetch= FetchType.LAZY,mappedBy="plan", cascade=CascadeType.MERGE)
+	private Set<Device> device = new HashSet<>();
 
 	
 	

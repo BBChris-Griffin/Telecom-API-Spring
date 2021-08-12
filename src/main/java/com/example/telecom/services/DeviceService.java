@@ -18,7 +18,7 @@ public class DeviceService {
 	
 	public Device save(Device device) {
 		
-		return deviceReposiotry.save(device);
+		return deviceRepository.save(device);
 	}
 	
 

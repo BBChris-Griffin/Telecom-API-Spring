@@ -2,6 +2,7 @@ package com.example.telecom.models;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Device {
 	String device_model;
 	
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="plan_id")
 	private Plans plan;
 	
@@ -56,10 +57,22 @@ public class Device {
 	}
 
 
-
+	
 
 	public String getPhoneNumber() {
 		return phoneNumber;
+	}
+
+
+	
+
+
+	public Device(String phoneNumber, String device_model,Plans plan) {
+		super();
+		this.phoneNumber = phoneNumber;
+		this.device_model = device_model;
+		this.plan = plan;
+		
 	}
 
 

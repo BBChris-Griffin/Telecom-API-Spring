@@ -55,15 +55,32 @@ public class TelecomController {
 		return new ResponseEntity<List<Users>>(service.findAll(), HttpStatus.OK);
 	}
 	
+//	@Transactional
+//	@PutMapping(value = "/{user_id}/{plan_id}")
+//		public int update(@PathVariable("user_id") Integer user_id, 
+//				@PathVariable("plan_id") Integer plan_id){
+//		System.out.println("update called");
+//		return service.UpdatePlan(user_id, plan_id);
+//
+//	}
+	
+	
 	@Transactional
-	@PutMapping(value = "/{user_id}/{plan_id}")
-		public int update(@PathVariable("user_id") Integer user_id, 
-				@PathVariable("plan_id") Integer plan_id){
+	@PutMapping(value = "/id={custom_id}/plans={plans}")
+		public int updateTotalPlans(@PathVariable("custom_id") Integer custom_id, 
+				@PathVariable("plans") Integer plans){
 		System.out.println("update called");
-		return service.UpdatePlan(user_id, plan_id);
+		return service.UpdateTotalPlans(custom_id, plans);
 
 	}
 	
+	@Transactional
+	@PutMapping(value = "/id={custom_id}/e_price={e_price}")
+		public int updateEstimatedPrice(@PathVariable("custom_id") Integer custom_id, 
+				@PathVariable("e_price") Integer e_price){
+		System.out.println("update called");
+		return service.UpdateEstimatedPrice(custom_id, e_price);
+	}
 
 	@PostMapping("/Adduser")
 	public ResponseEntity<Users> save(@RequestBody @Valid Users user) {

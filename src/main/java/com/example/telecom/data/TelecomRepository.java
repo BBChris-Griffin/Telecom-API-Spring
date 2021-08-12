@@ -11,15 +11,12 @@ import com.example.telecom.models.Users;
 @Repository
 public interface TelecomRepository extends JpaRepository<Users, Integer>{
 	
+	@Modifying
+	@Query(value = "UPDATE user AS u set u.total_plans = ?1 where u.customer_id = ?2", nativeQuery = true)
+	public int setTotalPlansFor(Integer total_plans, Integer customer_id);
 	
 	@Modifying
-	//@Query("UPDATE User AS u set u.plan_id = ?1 where u.customer_id = ?2")
-	@Query(value ="UPDATE user AS u set u.plan_id = ?1 where u.customer_id = ?2", nativeQuery = true)
-	public int setPlanIdFor(Integer plans_id,Integer user_id); 
-	
-//	
-//	@Modifying
-//	@Query("UPDATE user AS u set u= ?1 where u.customer_id = ?2")
-//	public Users setDeviceId(Integer device_id,Integer user_id); 
+	@Query(value = "UPDATE user AS u set u.estimated_price = ?1 where u.customer_id = ?2", nativeQuery = true)
+	public int setEstimatedPriceFor(Integer estimated_price, Integer customer_id);
 	
 }

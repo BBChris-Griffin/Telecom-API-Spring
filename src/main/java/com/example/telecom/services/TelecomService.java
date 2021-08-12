@@ -39,18 +39,34 @@ public class TelecomService {
 	}
 	
 	
-	public int  UpdatePlan(Integer user_id, Integer plan_id) {
-
-		if(user_id != null) {
-			
-			return repository.setPlanIdFor(plan_id, user_id);						
-			
-		}else {
-			System.out.println("please enter a value");
-			
+//	public int  UpdatePlan(Integer user_id, Integer plan_id) {
+//
+//		if(user_id != null) {
+//			
+//			return repository.setPlanIdFor(plan_id, user_id);						
+//			
+//		}else {
+//			System.out.println("please enter a value");
+//			
+//		}
+//		return -1;
+//		
+//	}
+	
+	public int UpdateTotalPlans(Integer custom_id, Integer plans) {
+		if(custom_id > 0) {
+			return repository.setTotalPlansFor(plans, custom_id);
 		}
+		System.out.println("Not a valid id");
 		return -1;
-		
+	}
+	
+	public int UpdateEstimatedPrice(Integer custom_id, Integer e_price) {
+		if(custom_id > 0) {
+			return repository.setEstimatedPriceFor(e_price, custom_id);
+		}
+		System.out.println("Not a valid id");
+		return -1;
 	}
 	
 	

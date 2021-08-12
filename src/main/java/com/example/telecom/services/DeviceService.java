@@ -56,4 +56,16 @@ public class DeviceService {
 //		}
 		return 1;
 	}
+	
+	public int UpdatePlanId(int plan_id,String phone_number) {
+		
+		if(deviceRepository.findByPhoneNumber(phone_number) != null) {
+			deviceRepository.setPlanId(plan_id, phone_number);
+		}else {
+			System.out.println("Number not in database");
+		}
+		return 1;
+		
+		
+	}
 }

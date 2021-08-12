@@ -136,6 +136,13 @@ public class TelecomController {
 	}
 	
 	@Transactional
+	@PutMapping(value="plan_id={plan_id}/phone_number={phone_number}")
+	public ResponseEntity<Integer> updateDevicePlanId(@PathVariable("plan_id") int plan_id, @PathVariable("phone_number") String phone_number) {
+		return new ResponseEntity<>(deviceservice.UpdatePlanId(plan_id, phone_number), HttpStatus.OK);
+		
+	};
+	
+	@Transactional
 	@DeleteMapping("/delete-device={phoneNumber}") 
 	public ResponseEntity<Integer> deleteDevice(@PathVariable("phoneNumber") String phoneNumber){
 		System.out.println("DELETE called");

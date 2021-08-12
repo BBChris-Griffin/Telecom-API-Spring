@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.telecom.data.TelecomRepository;
 import com.example.telecom.models.Device;
+import com.example.telecom.models.Plans;
 import com.example.telecom.models.Users;
 import com.example.telecom.services.DeviceService;
 import com.example.telecom.services.PlansService;
@@ -54,8 +55,17 @@ public class TelecomController {
 	public TelecomController() {
 		System.out.println("Controller Created");
 	}
-		
 
+	// To be called when web-application starts
+	@PostMapping("/plans")
+	public ResponseEntity<Plans> createPlans() {
+		Plans starter = new Plans(1, "STARTER", 35, 1);
+		Plans extra = new Plans(2, "EXTRA", 40, 4);
+		Plans elite = new Plans(3, "ELITE", 50, 4);
+
+		return new ResponseEntity<Plans>(plansservice.addPlanOptions(starter, extra, elite), HttpStatus.CREATED);
+	}
+	
 	@GetMapping("/user")
 	public ResponseEntity<Users> find() {
 		System.out.println("GET called");
@@ -69,7 +79,7 @@ public class TelecomController {
 	}
 	
 	@GetMapping("/findByNumber={phoneNumber}")
-	public ResponseEntity<Device> find(@PathVariable("phoneNumber") String phoneNumber) {
+	public ResponseEntity<Device> findByPhoneNumber(@PathVariable("phoneNumber") String phoneNumber) {
 		System.out.println("GET called");
 		return new ResponseEntity<Device>(deviceservice.findByPhoneNumber(phoneNumber), HttpStatus.OK);
 	}

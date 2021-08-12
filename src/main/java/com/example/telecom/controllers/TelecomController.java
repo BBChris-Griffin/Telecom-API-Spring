@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.telecom.data.TelecomRepository;
+import com.example.telecom.models.Device;
 import com.example.telecom.models.Users;
 import com.example.telecom.services.DeviceService;
 import com.example.telecom.services.PlansService;
@@ -101,6 +102,19 @@ public class TelecomController {
 		System.out.println(newUser);
 		return new ResponseEntity<>(service.save(user), HttpStatus.CREATED);
 	}
+	
+	@PostMapping("/AddDevice")
+	public ResponseEntity<Device> save(@RequestBody @Valid Device device){
+		System.out.println("Post for device called");
+		Device newdevice=deviceservice.save(device);
+		System.out.println(newdevice);
+		return new ResponseEntity<>(deviceservice.save(device), HttpStatus.CREATED);
+
+		
+		
+		
+	}
+	
 	
 	@DeleteMapping("/Deleteuser")
 	public ResponseEntity<Users> delete() {

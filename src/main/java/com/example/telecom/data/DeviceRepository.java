@@ -27,6 +27,12 @@ public interface DeviceRepository extends JpaRepository<Device,Integer> {
 	@Modifying
 	@Query(value="update device as u set u.plan_id=?1 where u.phone_number=?2", nativeQuery=true)
 	void setPlanId(int plan_id,String phone_number);
+	
+	
+	@Modifying
+	@Query(value="update device as u set customer_id=?1 where u.phone_number=?2", nativeQuery=true)
+	void setCustomerId(int customer_id, String phone_number);
+
 			
 	
 }

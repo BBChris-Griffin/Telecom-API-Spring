@@ -19,4 +19,5 @@ public interface TelecomRepository extends JpaRepository<Users, Integer>{
 	@Query(value = "UPDATE user AS u set u.estimated_price = ?1 where u.customer_id = ?2", nativeQuery = true)
 	public int setEstimatedPriceFor(Integer estimated_price, Integer customer_id);
 	
+	
 }

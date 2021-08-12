@@ -60,4 +60,16 @@ public class DeviceService {
 		
 		
 	}
+	
+	public int UpdateCustomerId(int customer_id,String phone_number) {
+		
+		if(deviceRepository.findByPhoneNumber(phone_number) != null) {
+			deviceRepository.setCustomerId(customer_id, phone_number);
+		}else {
+			System.out.println("Number not in database");
+		}
+		return 1;
+		
+		
+	}
 }

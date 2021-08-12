@@ -9,7 +9,11 @@ import com.example.telecom.data.DeviceRepository;
 public class DeviceService {
 	
 	@Autowired
-	private DeviceRepository deviceReposiotry;
+	private DeviceRepository deviceRepository;
 	
 
+	public int deleteDevice(String phoneNumber) {
+		deviceRepository.deleteByPhoneNumber(phoneNumber);
+		return 1;
+	}
 }

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.telecom.data.TelecomRepository;
+import com.example.telecom.models.Device;
 import com.example.telecom.models.Users;
 import com.example.telecom.services.DeviceService;
 import com.example.telecom.services.PlansService;
@@ -106,5 +107,12 @@ public class TelecomController {
 	public ResponseEntity<Users> delete() {
 		System.out.println("DELETE called");
 		return null;
+	}
+	
+	@Transactional
+	@DeleteMapping("/delete-device={phoneNumber}") 
+	public ResponseEntity<Integer> deleteDevice(@PathVariable("phoneNumber") String phoneNumber){
+		System.out.println("DELETE called");
+		return new ResponseEntity<>(deviceservice.deleteDevice(phoneNumber), HttpStatus.OK);
 	}
 }

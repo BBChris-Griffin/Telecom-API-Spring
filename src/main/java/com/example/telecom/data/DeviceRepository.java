@@ -12,6 +12,10 @@ import com.example.telecom.models.Device;
 @Repository
 public interface DeviceRepository extends JpaRepository<Device,Integer> {
 
+	@Modifying
+	@Query(value="DELETE FROM DEVICE WHERE PHONE_NUMBER = ?1", nativeQuery = true)
+	void deleteByPhoneNumber(String phoneNumber);
+
 	
 	
 }

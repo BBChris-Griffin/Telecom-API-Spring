@@ -9,19 +9,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="device")
 public class Device {
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
+	@Column(name="phone_number")
 	String phoneNumber;
 	
 	
-	@Column
-	int device_model;
+	@Column(name="model")
+	String device_model;
 	
 	
 	@ManyToOne
@@ -48,7 +49,7 @@ public class Device {
 
 
 
-	public Device(String phoneNumber, int device_model) {
+	public Device(String phoneNumber, String device_model) {
 		super();
 		this.phoneNumber = phoneNumber;
 		this.device_model = device_model;
@@ -71,14 +72,14 @@ public class Device {
 
 
 
-	public int getDevice_model() {
+	public String getDevice_model() {
 		return device_model;
 	}
 
 
 
 
-	public void setDevice_model(int device_model) {
+	public void setDevice_model(String device_model) {
 		this.device_model = device_model;
 	}
 

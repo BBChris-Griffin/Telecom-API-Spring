@@ -59,6 +59,7 @@ public class TelecomController {
 	// To be called when web-application starts
 	@PostMapping("/plans")
 	public ResponseEntity<Plans> createPlans() {
+		System.out.println("Plans Created");
 		Plans starter = new Plans(1, "STARTER", 35, 1);
 		Plans extra = new Plans(2, "EXTRA", 40, 4);
 		Plans elite = new Plans(3, "ELITE", 50, 4);

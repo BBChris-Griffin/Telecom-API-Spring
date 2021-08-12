@@ -35,10 +35,14 @@ public class DeviceService {
 		if(deviceRepository.findByPhoneNumber(newNumber) != null) {
 			System.out.println("Number Found");
 			String newnewNumber = "";
-			int firstNum = (int)Math.floor(Math.random()*(999-100+1)+100);
-			int secondNum = (int)Math.floor(Math.random()*(999-100+1)+100);
-			int thirdNum = (int)Math.floor(Math.random()*(9999-1000+1)+1000);
-			newnewNumber = firstNum + "-" + secondNum + "-" + thirdNum;
+			// If generated number also matches an existing device, try and try again
+			do {
+				newnewNumber = "";
+				int firstNum = (int)Math.floor(Math.random()*(999-100+1)+100);
+				int secondNum = (int)Math.floor(Math.random()*(999-100+1)+100);
+				int thirdNum = (int)Math.floor(Math.random()*(9999-1000+1)+1000);
+				newnewNumber = firstNum + "-" + secondNum + "-" + thirdNum;
+			} while(deviceRepository.findByPhoneNumber(newnewNumber) != null);
 			deviceRepository.setPhoneNumberFor(newnewNumber, newNumber);
 		}
 		deviceRepository.setPhoneNumberFor(newNumber, oldNumber);

@@ -16,6 +16,11 @@ public interface DeviceRepository extends JpaRepository<Device,Integer> {
 	@Query(value="DELETE FROM DEVICE WHERE PHONE_NUMBER = ?1", nativeQuery = true)
 	void deleteByPhoneNumber(String phoneNumber);
 
-	
+	@Modifying
+	@Query(value = "UPDATE DEVICE SET PHONE_NUMBER = ?1 where PHONE_NUMBER = ?2", nativeQuery = true)
+	void setPhoneNumberFor(String new_phone_number, String old_phone_number);
+
+	@Query(value = "SELECT * FROM DEVICE WHERE PHONE_NUMBER = ?1", nativeQuery = true)
+	Device findByPhoneNumber(String newNumber);
 	
 }

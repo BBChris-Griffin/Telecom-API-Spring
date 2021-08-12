@@ -19,7 +19,6 @@ import javax.persistence.Table;
 public class Plans {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name="plan_id")
 	private int planId;
 	
@@ -27,7 +26,7 @@ public class Plans {
 	private String planType;
 
 	@Column
-	private String price;
+	private int price;
 	
 	@Column
 	private int num_of_lines;
@@ -48,7 +47,7 @@ public class Plans {
 	
 
 
-	public Plans(String planType, String price, int num_of_lines) {
+	public Plans(String planType, int price, int num_of_lines) {
 		super();
 		this.planType = planType;
 		this.price = price;
@@ -58,7 +57,7 @@ public class Plans {
 
 
 
-	public Plans(int planId, String planType, String price, int num_of_lines) {
+	public Plans(int planId, String planType, int price, int num_of_lines) {
 		super();
 		this.planId = planId;
 		this.planType = planType;
@@ -97,14 +96,14 @@ public class Plans {
 
 
 
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
 
 
 
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

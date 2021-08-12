@@ -68,6 +68,12 @@ public class TelecomController {
 		return new ResponseEntity<List<Users>>(service.findAll(), HttpStatus.OK);
 	}
 	
+	@GetMapping("/findByNumber={phoneNumber}")
+	public ResponseEntity<Device> find(@PathVariable("phoneNumber") String phoneNumber) {
+		System.out.println("GET called");
+		return new ResponseEntity<Device>(deviceservice.findByPhoneNumber(phoneNumber), HttpStatus.OK);
+	}
+	
 //	@Transactional
 //	@PutMapping(value = "/{user_id}/{plan_id}")
 //		public int update(@PathVariable("user_id") Integer user_id, 
@@ -120,6 +126,13 @@ public class TelecomController {
 	public ResponseEntity<Users> delete() {
 		System.out.println("DELETE called");
 		return null;
+	}
+	
+	@Transactional
+	@PutMapping(value = "/old_phone_num={old_phone_num}/new_phone_num={new_phone_num}")
+	public ResponseEntity<Integer>  updateDevicePhoneNumber(@PathVariable("old_phone_num") String old_phone_num, 
+			@PathVariable("new_phone_num") String new_phone_num) {
+		return new ResponseEntity<>(deviceservice.updatePhoneNumber(old_phone_num, new_phone_num), HttpStatus.OK);
 	}
 	
 	@Transactional

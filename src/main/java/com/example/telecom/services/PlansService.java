@@ -1,5 +1,7 @@
 package com.example.telecom.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,10 @@ public class PlansService {
 		plansRepository.save(starter);
 		plansRepository.save(extra);
 		return plansRepository.save(elite);
+	}
+	
+	public List<Plans> findAll() {
+		return plansRepository.findAll();
 	}
 
 }

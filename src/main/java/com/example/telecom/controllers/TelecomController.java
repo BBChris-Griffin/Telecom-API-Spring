@@ -57,7 +57,7 @@ public class TelecomController {
 	}
 
 	// To be called when web-application starts
-	@PostMapping("/plans")
+	@PostMapping("/createPlans")
 	public ResponseEntity<Plans> createPlans() {
 		System.out.println("Plans Created");
 		Plans starter = new Plans(1, "STARTER", 35, 1);
@@ -65,6 +65,11 @@ public class TelecomController {
 		Plans elite = new Plans(3, "ELITE", 50, 4);
 
 		return new ResponseEntity<Plans>(plansservice.addPlanOptions(starter, extra, elite), HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/getPlans")
+	public ResponseEntity<List<Plans>> getPlans(){
+		return new ResponseEntity<List<Plans>>(plansservice.findAll(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/user")

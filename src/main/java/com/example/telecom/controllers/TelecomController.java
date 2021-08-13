@@ -34,10 +34,8 @@ import com.example.telecom.services.UsersPlanService;
 @RestController
 
 @RequestMapping("/telecom")
-
 //@RequestMapping("/telecom-api-spring/user")
-
-//@CrossOrigin(origins = "http://localhost:9001")
+@CrossOrigin(origins = "http://localhost:4200")
 public class TelecomController {
 
 	@Autowired

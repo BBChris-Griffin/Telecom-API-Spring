@@ -84,4 +84,19 @@ public class DeviceService {
 		}
 		return results;
 	}
+	
+	
+	public List<Integer> TotalPlanProperty(String attribute, int c_id) {
+		List<Integer> results = new LinkedList<>();
+		if(attribute.equals("price")) {
+			results = deviceRepository.TotalBill(c_id);
+		} else if(attribute.equals("num_of_lines")) {
+			results = deviceRepository.TotalLines(c_id);
+		}
+		return results;
+	}
+	
+	
+	
+	
 }

@@ -44,4 +44,14 @@ public interface DeviceRepository extends JpaRepository<Device,Integer> {
 			+ "device.customer_id = ?1", nativeQuery = true)
 	List<Integer> getPlanLines(int c_id);
 	
+	@Query(value = "select sum(price) as total_bill from plan inner join device on plan.plan_id = device.plan_id where "
+			+ "device.customer_id = ?1", nativeQuery = true)
+	List<Integer>TotalBill(int c_id);
+	
+	@Query(value = "select sum(num_of_lines) as total_lines from plan inner join device on plan.plan_id = device.plan_id where "
+			+ "device.customer_id = ?1", nativeQuery = true)
+	List<Integer> TotalLines(int c_id);
+	
+	
+	
 }

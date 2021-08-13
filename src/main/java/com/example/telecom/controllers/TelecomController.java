@@ -92,6 +92,14 @@ public class TelecomController {
 		return new ResponseEntity<List<Integer>>(deviceservice.getPlanProperty(attribute, id), HttpStatus.OK);
 	}
 	
+	
+	@GetMapping("total/attribute={attribute}/id={id}")
+	public ResponseEntity<List<Integer>> getTotalPlanPropertyFromDevice(@PathVariable("attribute")
+	String attribute, @PathVariable("id") Integer id) {
+		System.out.println("Stringy");
+		return new ResponseEntity<List<Integer>>(deviceservice.TotalPlanProperty(attribute, id), HttpStatus.OK);
+	}
+	
 //	@Transactional
 //	@PutMapping(value = "/{user_id}/{plan_id}")
 //		public int update(@PathVariable("user_id") Integer user_id, 

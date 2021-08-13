@@ -85,6 +85,13 @@ public class TelecomController {
 		return new ResponseEntity<Device>(deviceservice.findByPhoneNumber(phoneNumber), HttpStatus.OK);
 	}
 	
+	@GetMapping("/attribute={attribute}/id={id}")
+	public ResponseEntity<List<Integer>> getPlanPropertyFromDevice(@PathVariable("attribute")
+	String attribute, @PathVariable("id") Integer id) {
+		System.out.println("Stringy");
+		return new ResponseEntity<List<Integer>>(deviceservice.getPlanProperty(attribute, id), HttpStatus.OK);
+	}
+	
 //	@Transactional
 //	@PutMapping(value = "/{user_id}/{plan_id}")
 //		public int update(@PathVariable("user_id") Integer user_id, 
@@ -167,7 +174,7 @@ public class TelecomController {
 	@Transactional
 	@DeleteMapping("/delete-device={phoneNumber}") 
 	public ResponseEntity<Integer> deleteDevice(@PathVariable("phoneNumber") String phoneNumber){
-		System.out.println("DELETE called");
+		System.out.println("DE)LETE called");
 		return new ResponseEntity<>(deviceservice.deleteDevice(phoneNumber), HttpStatus.OK);
 	}
 }

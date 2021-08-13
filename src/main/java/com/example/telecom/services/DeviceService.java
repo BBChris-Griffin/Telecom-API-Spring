@@ -1,10 +1,14 @@
 package com.example.telecom.services;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.telecom.data.DeviceRepository;
 import com.example.telecom.models.Device;
+import com.example.telecom.models.Plans;
 
 @Service
 public class DeviceService {
@@ -69,7 +73,15 @@ public class DeviceService {
 			System.out.println("Number not in database");
 		}
 		return 1;
-		
-		
+	}
+	
+	public List<Integer> getPlanProperty(String attribute, int c_id) {
+		List<Integer> results = new LinkedList<>();
+		if(attribute.equals("price")) {
+			results = deviceRepository.getPlanPrices(c_id);
+		} else if(attribute.equals("num_of_lines")) {
+			results = deviceRepository.getPlanLines(c_id);
+		}
+		return results;
 	}
 }

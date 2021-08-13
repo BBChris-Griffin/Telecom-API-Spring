@@ -1,6 +1,8 @@
 package com.example.telecom.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -101,6 +103,12 @@ public class TelecomController {
 	String attribute, @PathVariable("id") Integer id) {
 		System.out.println("Stringy");
 		return new ResponseEntity<List<Integer>>(deviceservice.TotalPlanProperty(attribute, id), HttpStatus.OK);
+	}
+	
+	@GetMapping("total/c_id={c_id}")
+	public ResponseEntity<List<Map<Integer, Integer>>> getDevicesPerPlan(@PathVariable("c_id") int c_id) {
+		System.out.println("Stringy");
+		return new ResponseEntity<List<Map<Integer, Integer>>>(deviceservice.getDevicesPerPlan(c_id), HttpStatus.OK);
 	}
 	
 //	@Transactional

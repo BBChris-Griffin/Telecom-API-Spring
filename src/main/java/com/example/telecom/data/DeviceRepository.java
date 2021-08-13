@@ -1,7 +1,9 @@
 package com.example.telecom.data;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -52,6 +54,13 @@ public interface DeviceRepository extends JpaRepository<Device,Integer> {
 			+ "device.customer_id = ?1", nativeQuery = true)
 	List<Integer> TotalLines(int c_id);
 	
+	@Query(value = "select plan_id, count(phone_number)\r\n"
+			+ "from device\r\n"
+			+ "inner join user\r\n"
+			+ "on device.customer_id = user.customer_id\r\n"
+			+ "where device.customer_id = ?1\r\n"
+			+ "group by device.plan_id;", nativeQuery = true)
+	List<Map<Integer, Integer>> getDevicesPerPlan(int c_id);
 	
 	
 }

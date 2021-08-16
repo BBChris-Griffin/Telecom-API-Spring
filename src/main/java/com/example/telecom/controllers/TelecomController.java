@@ -111,16 +111,17 @@ public class TelecomController {
 	
 	@GetMapping("total/c_id={c_id}")
 	public ResponseEntity<List<Map<Integer, Integer>>> getDevicesPerPlan(@PathVariable("c_id") int c_id) {
-		List<Map<Integer, Integer>> list = deviceservice.getDevicesPerPlan(c_id);
-		System.out.println(list.get(1).get("count(phone_number)"));
 		return new ResponseEntity<List<Map<Integer, Integer>>>(deviceservice.getDevicesPerPlan(c_id), HttpStatus.OK);
 	}
 	
-	@GetMapping("total/c_ep={c_id}")
+	@GetMapping("totalPrice/c_id={c_id}")
 	public ResponseEntity<Integer> getEP(@PathVariable("c_id") int c_id) {
-		int price= deviceservice.calculateEstimatedPrice(c_id);
-		System.out.println(price);
 		return new ResponseEntity<Integer>(deviceservice.calculateEstimatedPrice(c_id), HttpStatus.OK);
+	}
+	
+	@GetMapping("devices/c_id={c_id}")
+	public ResponseEntity<Integer> getTotalDevicesByCustomer(@PathVariable("c_id") int c_id) {
+		return new ResponseEntity<Integer>(deviceservice.getTotalDevicesByCustomer(c_id), HttpStatus.OK);
 	}
 	
 //	@Transactional
@@ -134,16 +135,14 @@ public class TelecomController {
 	
 	
 	@Transactional
-	@PutMapping(value = "/id={custom_id}/plans={plans}")
-		public int updateTotalPlans(@PathVariable("custom_id") Integer custom_id, 
-				@PathVariable("plans") Integer plans){
+	@PutMapping(value = "/plans/c_id={custom_id}")
+		public int updateTotalPlans(@PathVariable("custom_id") Integer custom_id){
 		System.out.println("update called");
-		return service.UpdateTotalPlans(custom_id, plans);
-
+		return service.UpdateTotalPlans(custom_id, deviceservice.totalPlansUsed(custom_id));
 	}
 	
 	@Transactional
-	@PutMapping(value = "/id={custom_id}")
+	@PutMapping(value = "/price/c_id={custom_id}")
 		public int updateEstimatedPrice(@PathVariable("custom_id") Integer custom_id){
 		System.out.println("update called");
 		return service.UpdateEstimatedPrice(custom_id, deviceservice.calculateEstimatedPrice(custom_id));

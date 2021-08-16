@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="device")
 public class Device {
@@ -25,11 +27,12 @@ public class Device {
 	@Column(name="model")
 	String device_model;
 	
-	
+	@JsonManagedReference
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="plan_id")
 	private Plans plan;
 	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="customer_id")
 	private Users user;
@@ -102,6 +105,35 @@ public class Device {
 	@Override
 	public int hashCode() {
 		return Objects.hash(device_model, phoneNumber);
+	}
+	
+	
+
+
+
+	public Plans getPlan() {
+		return plan;
+	}
+
+
+
+
+	public void setPlan(Plans plan) {
+		this.plan = plan;
+	}
+
+
+
+
+	public Users getUser() {
+		return user;
+	}
+
+
+
+
+	public void setUser(Users user) {
+		this.user = user;
 	}
 
 

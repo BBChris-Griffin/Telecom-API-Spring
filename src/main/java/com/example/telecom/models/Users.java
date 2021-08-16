@@ -18,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity 
 
 @Table(name="User")
@@ -52,7 +54,7 @@ public class Users {
 	private Set<UsersPlan> usersplans = new HashSet<>();
 	
 	
-	
+	@JsonBackReference
 	@OneToMany (mappedBy="user")
 	private Set<Device> device = new HashSet<>();
 

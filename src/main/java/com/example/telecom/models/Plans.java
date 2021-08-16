@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="Plan")
 public class Plans {
@@ -35,6 +37,7 @@ public class Plans {
 	@OneToMany (fetch= FetchType.LAZY,mappedBy="plan", cascade=CascadeType.MERGE)
 	private Set<UsersPlan> usersplans = new HashSet<>();
 	
+	@JsonBackReference
 	@OneToMany (fetch= FetchType.LAZY,mappedBy="plan", cascade=CascadeType.MERGE)
 	private Set<Device> device = new HashSet<>();
 

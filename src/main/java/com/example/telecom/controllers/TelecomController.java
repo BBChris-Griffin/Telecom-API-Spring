@@ -94,6 +94,12 @@ public class TelecomController {
 		return new ResponseEntity<Device>(deviceservice.findByPhoneNumber(phoneNumber), HttpStatus.OK);
 	}
 	
+	@GetMapping("/DeviceCustomerId={customer_id}")
+	public ResponseEntity<List<Device>> findByCustomerId(@PathVariable("customer_id") int customer_id) {
+		System.out.println("GET called");
+		return new ResponseEntity<List<Device>>(deviceservice.findByCustomerId(customer_id), HttpStatus.OK);
+	}
+	
 	@GetMapping("/attribute={attribute}/id={id}")
 	public ResponseEntity<List<Integer>> getPlanPropertyFromDevice(@PathVariable("attribute")
 	String attribute, @PathVariable("id") Integer id) {

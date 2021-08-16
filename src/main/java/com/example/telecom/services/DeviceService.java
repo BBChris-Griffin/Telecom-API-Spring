@@ -36,6 +36,11 @@ public class DeviceService {
 		return deviceRepository.findByPhoneNumber(number);
 	}
 	
+	public List<Device> findByCustomerId(int customer_id) {
+		return deviceRepository.findByCustomerID(customer_id);
+
+		
+	}
 
 	public int deleteDevice(String phoneNumber) {
 		deviceRepository.deleteByPhoneNumber(phoneNumber);

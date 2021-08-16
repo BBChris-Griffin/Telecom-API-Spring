@@ -28,6 +28,10 @@ public class DeviceService {
 		return deviceRepository.save(device);
 	}
 	
+	public List<Device> findAll(){
+		return deviceRepository.findAll();
+	}
+	
 	public Device findByPhoneNumber(String number) {
 		return deviceRepository.findByPhoneNumber(number);
 	}

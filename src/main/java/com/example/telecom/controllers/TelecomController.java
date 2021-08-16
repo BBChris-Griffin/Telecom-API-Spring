@@ -84,6 +84,10 @@ public class TelecomController {
 		return new ResponseEntity<List<Users>>(service.findAll(), HttpStatus.OK);
 	}
 	
+	@GetMapping("/devices")
+	public ResponseEntity<List<Device>> findAllDevice(){
+		return new ResponseEntity<List<Device>>(deviceservice.findAll(), HttpStatus.OK);
+	}
 	@GetMapping("/findByNumber={phoneNumber}")
 	public ResponseEntity<Device> findByPhoneNumber(@PathVariable("phoneNumber") String phoneNumber) {
 		System.out.println("GET called");

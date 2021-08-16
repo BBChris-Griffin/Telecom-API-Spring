@@ -107,8 +107,16 @@ public class TelecomController {
 	
 	@GetMapping("total/c_id={c_id}")
 	public ResponseEntity<List<Map<Integer, Integer>>> getDevicesPerPlan(@PathVariable("c_id") int c_id) {
-		System.out.println("Stringy");
+		List<Map<Integer, Integer>> list = deviceservice.getDevicesPerPlan(c_id);
+		System.out.println(list.get(1).get("count(phone_number)"));
 		return new ResponseEntity<List<Map<Integer, Integer>>>(deviceservice.getDevicesPerPlan(c_id), HttpStatus.OK);
+	}
+	
+	@GetMapping("total/c_ep={c_id}")
+	public ResponseEntity<Integer> getEP(@PathVariable("c_id") int c_id) {
+		int price= deviceservice.calculateEstimatedPrice(c_id);
+		System.out.println(price);
+		return new ResponseEntity<Integer>(deviceservice.calculateEstimatedPrice(c_id), HttpStatus.OK);
 	}
 	
 //	@Transactional
@@ -131,11 +139,10 @@ public class TelecomController {
 	}
 	
 	@Transactional
-	@PutMapping(value = "/id={custom_id}/e_price={e_price}")
-		public int updateEstimatedPrice(@PathVariable("custom_id") Integer custom_id, 
-				@PathVariable("e_price") Integer e_price){
+	@PutMapping(value = "/id={custom_id}")
+		public int updateEstimatedPrice(@PathVariable("custom_id") Integer custom_id){
 		System.out.println("update called");
-		return service.UpdateEstimatedPrice(custom_id, e_price);
+		return service.UpdateEstimatedPrice(custom_id, deviceservice.calculateEstimatedPrice(custom_id));
 	}
 
 	@PostMapping("/Adduser")

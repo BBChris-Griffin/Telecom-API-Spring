@@ -126,4 +126,26 @@ public class DeviceService {
 		return estimatedPrice;
 	}
 	
+	public int totalPlansUsed(int c_id) {
+		int plans = 0;
+		List<Map<Integer, Integer>> priceMap = deviceRepository.getDevicesPerPlan(c_id);
+		for(int i = 0; i < priceMap.size(); i++) {
+			if(priceMap.get(i).get("plan_id") == 1) {
+				Number temp = (Number)priceMap.get(i).get("count(phone_number)");
+				plans += temp.intValue();
+
+			} else if(priceMap.get(i).get("plan_id") == 2) {
+				Number temp = (Number)priceMap.get(i).get("count(phone_number)");
+				plans += Math.ceil(temp.doubleValue() / 4);
+			} else {
+				Number temp = (Number)priceMap.get(i).get("count(phone_number)");
+				plans += Math.ceil(temp.doubleValue() / 4);			
+			}
+		}
+		return plans;
+	}
+	
+	public int getTotalDevicesByCustomer(int c_id) {
+		return deviceRepository.getTotalDevicesByCustomer(c_id);
+	}
 }

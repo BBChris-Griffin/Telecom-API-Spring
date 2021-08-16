@@ -62,5 +62,7 @@ public interface DeviceRepository extends JpaRepository<Device,Integer> {
 			+ "group by device.plan_id;", nativeQuery = true)
 	List<Map<Integer, Integer>> getDevicesPerPlan(int c_id);
 	
+	@Query(value = "select count(phone_number) from device where customer_id = ?1", nativeQuery = true)
+	Integer getTotalDevicesByCustomer(int c_id);
 	
 }

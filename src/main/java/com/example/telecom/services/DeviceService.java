@@ -1,5 +1,6 @@
 package com.example.telecom.services;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -102,5 +103,23 @@ public class DeviceService {
 		return deviceRepository.getDevicesPerPlan(c_id);
 	}
 	
+	public int calculateEstimatedPrice(int c_id) {
+		List<Map<Integer, Integer>> priceMap = deviceRepository.getDevicesPerPlan(c_id);
+		int estimatedPrice = 0;
+		for(int i = 0; i < priceMap.size(); i++) {
+			if(priceMap.get(i).get("plan_id") == 1) {
+				Number temp = (Number)priceMap.get(i).get("count(phone_number)");
+				estimatedPrice += temp.intValue() * 35;
+
+			} else if(priceMap.get(i).get("plan_id") == 2) {
+				Number temp = (Number)priceMap.get(i).get("count(phone_number)");
+				estimatedPrice += Math.ceil(temp.doubleValue() / 4) * 40;
+			} else {
+				Number temp = (Number)priceMap.get(i).get("count(phone_number)");
+				estimatedPrice += Math.ceil(temp.doubleValue() / 4) * 50;			
+			}
+		}
+		return estimatedPrice;
+	}
 	
 }

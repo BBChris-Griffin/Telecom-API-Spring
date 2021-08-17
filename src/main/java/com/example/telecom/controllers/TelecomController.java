@@ -163,7 +163,7 @@ public class TelecomController {
 	}
 	
 	@PostMapping("/AddDevice")
-	public ResponseEntity<Device> save(@RequestBody @Valid Device device){
+	public ResponseEntity<Device> save(@RequestBody @Valid Device device ){
 		System.out.println("Post for device called");
 		Device newdevice=deviceservice.save(device);
 		System.out.println(newdevice);

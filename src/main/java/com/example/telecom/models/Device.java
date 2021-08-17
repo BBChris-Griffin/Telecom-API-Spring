@@ -27,12 +27,12 @@ public class Device {
 	@Column(name="model")
 	String device_model;
 	
-	@JsonManagedReference
+	//@JsonManagedReference
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="plan_id")
 	private Plans plan;
 	
-	@JsonManagedReference
+	//@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="customer_id")
 	private Users user;

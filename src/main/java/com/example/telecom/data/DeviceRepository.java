@@ -63,7 +63,7 @@ public interface DeviceRepository extends JpaRepository<Device,Integer> {
 			+ "from device\r\n"
 			+ "inner join user\r\n"
 			+ "on device.customer_id = user.customer_id\r\n"
-			+ "where device.customer_id = ?1\r\n"
+			+ "where device.customer_id = ?1  AND plan_id IS NOT NULL\r\n"
 			+ "group by device.plan_id;", nativeQuery = true)
 	List<Map<Integer, Integer>> getDevicesPerPlan(int c_id);
 	

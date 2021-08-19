@@ -31,20 +31,15 @@ import com.example.telecom.models.Users;
 import com.example.telecom.services.DeviceService;
 import com.example.telecom.services.PlansService;
 import com.example.telecom.services.TelecomService;
-import com.example.telecom.services.UsersPlanService;
 
 @RestController
 
 @RequestMapping("/telecom")
-//@RequestMapping("/telecom-api-spring/user")
 @CrossOrigin(origins = "http://localhost:4200")
 public class TelecomController {
 
 	@Autowired
 	private TelecomService service;
-	
-	@Autowired
-	private UsersPlanService userplanservice;
 	
 	@Autowired
 	private DeviceService deviceservice;
@@ -130,15 +125,11 @@ public class TelecomController {
 		return new ResponseEntity<Integer>(deviceservice.getTotalDevicesByCustomer(c_id), HttpStatus.OK);
 	}
 	
-//	@Transactional
-//	@PutMapping(value = "/{user_id}/{plan_id}")
-//		public int update(@PathVariable("user_id") Integer user_id, 
-//				@PathVariable("plan_id") Integer plan_id){
-//		System.out.println("update called");
-//		return service.UpdatePlan(user_id, plan_id);
-//
-//	}
-	
+	@GetMapping("authenticate/id={id}/password={password}")
+	public ResponseEntity<Boolean> comparePasswords(@PathVariable("id") int id, 
+			@PathVariable("password") String password) {
+		return new ResponseEntity<Boolean>(service.comparePassword(id, password), HttpStatus.OK);
+	}
 	
 	@Transactional
 	@PutMapping(value = "/plans/c_id={custom_id}")
@@ -167,13 +158,8 @@ public class TelecomController {
 		System.out.println("Post for device called");
 		Device newdevice=deviceservice.save(device);
 		System.out.println(newdevice);
-		return new ResponseEntity<>(deviceservice.save(device), HttpStatus.CREATED);
-
-		
-		
-		
+		return new ResponseEntity<>(deviceservice.save(device), HttpStatus.CREATED);		
 	}
-	
 	
 	@DeleteMapping("/Deleteuser")
 	public ResponseEntity<Users> delete() {
@@ -201,10 +187,6 @@ public class TelecomController {
 		return new ResponseEntity<>(deviceservice.UpdateCustomerId(customer_id, phone_number), HttpStatus.OK);
 		
 	};
-	
-	
-	
-	
 	
 	@Transactional
 	@DeleteMapping("/delete-device={phoneNumber}") 

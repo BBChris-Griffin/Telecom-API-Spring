@@ -33,22 +33,13 @@ public class Plans {
 	@Column
 	private int num_of_lines;
 		
-	
-	@OneToMany (fetch= FetchType.LAZY,mappedBy="plan", cascade=CascadeType.MERGE)
-	private Set<UsersPlan> usersplans = new HashSet<>();
-	
 	@JsonBackReference
 	@OneToMany (fetch= FetchType.LAZY,mappedBy="plan", cascade=CascadeType.MERGE)
 	private Set<Device> device = new HashSet<>();
 
-	
-	
 	public Plans() {
 		super();
 	}
-
-	
-
 
 	public Plans(String planType, int price, int num_of_lines) {
 		super();
@@ -57,9 +48,6 @@ public class Plans {
 		this.num_of_lines = num_of_lines;
 	}
 
-
-
-
 	public Plans(int planId, String planType, int price, int num_of_lines) {
 		super();
 		this.planId = planId;
@@ -67,9 +55,6 @@ public class Plans {
 		this.price = price;
 		this.num_of_lines = num_of_lines;
 	}
-
-
-
 
 	public int getPlanId() {
 		return planId;
@@ -82,58 +67,35 @@ public class Plans {
 		this.planId = planId;
 	}
 
-
-
-
 	public String getPlanType() {
 		return planType;
 	}
-
-
-
 
 	public void setPlanType(String planType) {
 		this.planType = planType;
 	}
 
-
-
-
 	public int getPrice() {
 		return price;
 	}
 
-
-
-
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
-
-
 
 	public int getNum_of_lines() {
 		return num_of_lines;
 	}
 
 
-
-
 	public void setNum_of_lines(int num_of_lines) {
 		this.num_of_lines = num_of_lines;
 	}
-
-
-
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(num_of_lines, planId, planType, price);
 	}
-
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -148,18 +110,9 @@ public class Plans {
 				&& Objects.equals(price, other.price);
 	}
 
-
-
-
 	@Override
 	public String toString() {
 		return "Plans [planId=" + planId + ", planType=" + planType + ", price=" + price + ", num_of_lines="
 				+ num_of_lines + "]";
 	}
-	
-	
-	
-
-
-	
 }

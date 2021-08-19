@@ -25,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table(name="User")
 public class Users {
 	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="customer_id")
@@ -43,16 +42,9 @@ public class Users {
 	@Column
 	private int total_plans;
 	
-	
-	
-	
 	public Users() {
 		super();
 	}
-
-	@OneToMany (mappedBy="user")
-	private Set<UsersPlan> usersplans = new HashSet<>();
-	
 	
 	@JsonBackReference
 	@OneToMany (mappedBy="user")
@@ -167,8 +159,4 @@ public class Users {
 		this.estimated_price = estimated_price;
 		this.total_plans = total_plans;
 	}
-	
-	
-	
-
 }

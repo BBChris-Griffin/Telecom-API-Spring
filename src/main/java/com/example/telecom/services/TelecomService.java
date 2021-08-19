@@ -29,29 +29,12 @@ public class TelecomService {
 	
 	public Users findById(Integer id) {
 		Optional<Users> optional= repository.findById(id);
-		return optional.isPresent()? optional.get():null;
-		
-	}
-	
+		return optional.isPresent()? optional.get():null;		
+	}	
 	
 	public List<Users> findAll() {
 		return repository.findAll();
 	}
-	
-	
-//	public int  UpdatePlan(Integer user_id, Integer plan_id) {
-//
-//		if(user_id != null) {
-//			
-//			return repository.setPlanIdFor(plan_id, user_id);						
-//			
-//		}else {
-//			System.out.println("please enter a value");
-//			
-//		}
-//		return -1;
-//		
-//	}
 	
 	public int UpdateTotalPlans(Integer custom_id, Integer plans) {
 		if(custom_id > 0) {
@@ -68,9 +51,4 @@ public class TelecomService {
 		System.out.println("Not a valid id");
 		return -1;
 	}
-	
-	
-
-	
-	
 }

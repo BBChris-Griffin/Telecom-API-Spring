@@ -103,29 +103,29 @@ public class TelecomController {
 	}
 	
 	
-	@GetMapping("total/attribute={attribute}/id={id}")
+	@GetMapping("/total/attribute={attribute}/id={id}")
 	public ResponseEntity<List<Integer>> getTotalPlanPropertyFromDevice(@PathVariable("attribute")
 	String attribute, @PathVariable("id") Integer id) {
 		System.out.println("Stringy");
 		return new ResponseEntity<List<Integer>>(deviceservice.TotalPlanProperty(attribute, id), HttpStatus.OK);
 	}
 	
-	@GetMapping("total/c_id={c_id}")
+	@GetMapping("/total/c_id={c_id}")
 	public ResponseEntity<List<Map<Integer, Integer>>> getDevicesPerPlan(@PathVariable("c_id") int c_id) {
 		return new ResponseEntity<List<Map<Integer, Integer>>>(deviceservice.getDevicesPerPlan(c_id), HttpStatus.OK);
 	}
 	
-	@GetMapping("totalPrice/c_id={c_id}")
+	@GetMapping("/totalPrice/c_id={c_id}")
 	public ResponseEntity<Integer> getEP(@PathVariable("c_id") int c_id) {
 		return new ResponseEntity<Integer>(deviceservice.calculateEstimatedPrice(c_id), HttpStatus.OK);
 	}
 	
-	@GetMapping("devices/c_id={c_id}")
+	@GetMapping("/devices/c_id={c_id}")
 	public ResponseEntity<Integer> getTotalDevicesByCustomer(@PathVariable("c_id") int c_id) {
 		return new ResponseEntity<Integer>(deviceservice.getTotalDevicesByCustomer(c_id), HttpStatus.OK);
 	}
 	
-	@GetMapping("authenticate/id={id}/password={password}")
+	@GetMapping("/authenticate/id={id}/password={password}")
 	public ResponseEntity<Boolean> comparePasswords(@PathVariable("id") int id, 
 			@PathVariable("password") String password) {
 		return new ResponseEntity<Boolean>(service.comparePassword(id, password), HttpStatus.OK);

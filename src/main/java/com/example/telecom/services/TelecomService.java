@@ -51,4 +51,9 @@ public class TelecomService {
 		System.out.println("Not a valid id");
 		return -1;
 	}
+	
+	public boolean comparePassword(Integer custom_id, String basePassword) {
+		String correctPassword = repository.getPassword(custom_id);
+		return basePassword.equals(correctPassword);
+	}
 }

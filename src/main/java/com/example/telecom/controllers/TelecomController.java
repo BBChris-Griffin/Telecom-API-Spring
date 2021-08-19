@@ -125,6 +125,12 @@ public class TelecomController {
 		return new ResponseEntity<Integer>(deviceservice.getTotalDevicesByCustomer(c_id), HttpStatus.OK);
 	}
 	
+	@GetMapping("authenticate/id={id}/password={password}")
+	public ResponseEntity<Boolean> comparePasswords(@PathVariable("id") int id, 
+			@PathVariable("password") String password) {
+		return new ResponseEntity<Boolean>(service.comparePassword(id, password), HttpStatus.OK);
+	}
+	
 	@Transactional
 	@PutMapping(value = "/plans/c_id={custom_id}")
 		public int updateTotalPlans(@PathVariable("custom_id") Integer custom_id){

@@ -11,6 +11,8 @@ import com.example.telecom.models.Users;
 @Repository
 public interface TelecomRepository extends JpaRepository<Users, Integer>{
 	
+	Users findByname(String name);
+	
 	@Modifying
 	@Query(value = "UPDATE user AS u set u.total_plans = ?1 where u.customer_id = ?2", nativeQuery = true)
 	public int setTotalPlansFor(Integer total_plans, Integer customer_id);

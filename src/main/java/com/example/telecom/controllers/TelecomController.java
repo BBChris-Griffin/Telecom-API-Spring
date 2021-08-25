@@ -50,6 +50,16 @@ public class TelecomController {
 	public TelecomController() {
 		System.out.println("Controller Created");
 	}
+	
+	@GetMapping("/home")
+	public String home() {
+		return "this is home page";
+	}
+	
+	@GetMapping("/admin")
+	public String admin() {
+		return "this is admin page";
+	}
 
 	// To be called when web-application starts
 	@PostMapping("/createPlans")
@@ -74,10 +84,7 @@ public class TelecomController {
 	}
 	
 	// find all users
-	@GetMapping("/users")
-	public ResponseEntity<List<Users>> findAll(){
-		return new ResponseEntity<List<Users>>(service.findAll(), HttpStatus.OK);
-	}
+	
 	
 	@GetMapping("/devices")
 	public ResponseEntity<List<Device>> findAllDevice(){
@@ -125,7 +132,7 @@ public class TelecomController {
 		return new ResponseEntity<Integer>(deviceservice.getTotalDevicesByCustomer(c_id), HttpStatus.OK);
 	}
 	
-	@GetMapping("authenticate/id={id}/password={password}")
+	@GetMapping("/authenticate/id={id}/password={password}")
 	public ResponseEntity<Boolean> comparePasswords(@PathVariable("id") int id, 
 			@PathVariable("password") String password) {
 		return new ResponseEntity<Boolean>(service.comparePassword(id, password), HttpStatus.OK);

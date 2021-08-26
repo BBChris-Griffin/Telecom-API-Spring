@@ -13,6 +13,7 @@ import javax.xml.ws.soap.Addressing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -52,7 +53,7 @@ public class TelecomController {
 	}
 	
 	@GetMapping("/home")
-	public String home() {
+	public String home(CsrfToken token) {
 		return "this is home page";
 	}
 	
@@ -161,7 +162,7 @@ public class TelecomController {
 	}
 	
 	@PostMapping("/AddDevice")
-	public ResponseEntity<Device> save(@RequestBody @Valid Device device ){
+	public ResponseEntity<Device> save(@RequestBody @Valid Device device){
 		System.out.println("Post for device called");
 		Device newdevice=deviceservice.save(device);
 		System.out.println(newdevice);

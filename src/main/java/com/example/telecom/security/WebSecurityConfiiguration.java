@@ -53,6 +53,8 @@ public class WebSecurityConfiiguration extends WebSecurityConfigurerAdapter {
 		.authorizeRequests()
 		.antMatchers("/telecom/login")
 		.permitAll()
+		.antMatchers("/telecom/getPlans")
+		.hasAuthority("USER")
 		.anyRequest()
 		.authenticated()
 		.and()

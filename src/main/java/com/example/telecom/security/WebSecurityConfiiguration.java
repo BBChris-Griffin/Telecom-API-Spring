@@ -51,14 +51,12 @@ public class WebSecurityConfiiguration extends WebSecurityConfigurerAdapter {
 		.csrf()
 		.disable()
 		.authorizeRequests()
-		.antMatchers("/")
+		.antMatchers("/telecom/login")
 		.permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()
-		.httpBasic()
-		.and()
-		.formLogin();
+		.httpBasic();
 	}
 	
 	@Bean

@@ -29,6 +29,7 @@ import com.example.telecom.data.TelecomRepository;
 import com.example.telecom.models.Device;
 import com.example.telecom.models.Plans;
 import com.example.telecom.models.Users;
+import com.example.telecom.security.CustomUserDetailService;
 import com.example.telecom.services.DeviceService;
 import com.example.telecom.services.PlansService;
 import com.example.telecom.services.TelecomService;
@@ -47,6 +48,11 @@ public class TelecomController {
 	
 	@Autowired
 	private PlansService plansservice;
+	
+	
+	@Autowired
+	
+	private CustomUserDetailService customerservice;
 	
 	public TelecomController() {
 		System.out.println("Controller Created");
@@ -138,6 +144,22 @@ public class TelecomController {
 			@PathVariable("password") String password) {
 		return new ResponseEntity<Boolean>(service.comparePassword(id, password), HttpStatus.OK);
 	}
+	
+	
+	@RequestMapping("/login")
+	public boolean compareHashPasswords(@RequestBody @Valid Users user) {
+		return service.comparePassword2(user.getName(), user.getPassword());
+	}
+	
+	
+	@GetMapping("/login/name={username}")
+		public void login(@PathVariable("username") String username) {
+		customerservice.loadUserByUsername(username);
+			
+		}
+		
+		
+	
 	
 	@Transactional
 	@PutMapping(value = "/plans/c_id={custom_id}")

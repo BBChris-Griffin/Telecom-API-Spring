@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.telecom.data.TelecomRepository;
@@ -56,4 +57,33 @@ public class TelecomService {
 		String correctPassword = repository.getPassword(custom_id);
 		return basePassword.equals(correctPassword);
 	}
+	
+	public boolean comparePassword2(String custom_id, String password) {
+		String hash = repository.getPassword(custom_id);
+		
+		if(custom_id==null) {
+			return false;
+		}
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		if(encoder.matches(password,hash)) {
+			System.out.println("is equal");
+			return true;
+			}else {
+				System.out.println("not equal");
+				return false;
+			}
+
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
 }

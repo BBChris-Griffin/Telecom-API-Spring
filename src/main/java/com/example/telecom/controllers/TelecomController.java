@@ -13,6 +13,7 @@ import javax.xml.ws.soap.Addressing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -50,6 +51,16 @@ public class TelecomController {
 	public TelecomController() {
 		System.out.println("Controller Created");
 	}
+	
+	@GetMapping("/home")
+	public String home(CsrfToken token) {
+		return "this is home page";
+	}
+	
+	@GetMapping("/admin")
+	public String admin() {
+		return "this is admin page";
+	}
 
 	// To be called when web-application starts
 	@PostMapping("/createPlans")
@@ -74,10 +85,7 @@ public class TelecomController {
 	}
 	
 	// find all users
-	@GetMapping("/users")
-	public ResponseEntity<List<Users>> findAll(){
-		return new ResponseEntity<List<Users>>(service.findAll(), HttpStatus.OK);
-	}
+	
 	
 	@GetMapping("/devices")
 	public ResponseEntity<List<Device>> findAllDevice(){
@@ -154,7 +162,7 @@ public class TelecomController {
 	}
 	
 	@PostMapping("/AddDevice")
-	public ResponseEntity<Device> save(@RequestBody @Valid Device device ){
+	public ResponseEntity<Device> save(@RequestBody @Valid Device device){
 		System.out.println("Post for device called");
 		Device newdevice=deviceservice.save(device);
 		System.out.println(newdevice);

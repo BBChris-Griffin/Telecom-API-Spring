@@ -29,7 +29,6 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="customer_id")
 	private int customerId;
-	@Column
 	private String name;
 	@Column
 	private String email;
@@ -41,6 +40,9 @@ public class Users {
 	
 	@Column
 	private int total_plans;
+	
+	@Column
+	private String role;
 	
 	public Users() {
 		super();
@@ -97,6 +99,18 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
+
+	public String getRole() {
+		return role;
+	}
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 
 	public int getEstimated_price() {
 		return estimated_price;
@@ -126,11 +140,14 @@ public class Users {
 	}
 
 
+	
+
 	@Override
 	public String toString() {
 		return "Users [customerId=" + customerId + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", estimated_price=" + estimated_price + ", total_plans=" + total_plans + "]";
+				+ ", estimated_price=" + estimated_price + ", total_plans=" + total_plans + ", role=" + role + "]";
 	}
+
 
 	@Override
 	public int hashCode() {

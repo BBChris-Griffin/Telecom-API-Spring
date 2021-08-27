@@ -146,10 +146,9 @@ public class TelecomController {
 	}
 	
 	
-	@GetMapping("/login/id={id}/password={password}")
-	public ResponseEntity<Boolean> compareHashPasswords(@PathVariable("id") int id, 
-			@PathVariable("password") String password) {
-		return new ResponseEntity<Boolean>(service.comparePassword2(id, password), HttpStatus.OK);
+	@RequestMapping("/login")
+	public boolean compareHashPasswords(@RequestBody @Valid Users user) {
+		return service.comparePassword2(user.getName(), user.getPassword());
 	}
 	
 	

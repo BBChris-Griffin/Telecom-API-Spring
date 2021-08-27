@@ -58,7 +58,7 @@ public class TelecomService {
 		return basePassword.equals(correctPassword);
 	}
 	
-	public boolean comparePassword2(Integer custom_id, String password) {
+	public boolean comparePassword2(String custom_id, String password) {
 		String hash = repository.getPassword(custom_id);
 		
 		if(custom_id==null) {

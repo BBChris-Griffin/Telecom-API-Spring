@@ -23,4 +23,6 @@ public interface TelecomRepository extends JpaRepository<Users, Integer>{
 	
 	@Query(value ="select password from user where customer_id = ?1", nativeQuery = true)
 	public String getPassword(Integer customer_id);
+	
+	
 }

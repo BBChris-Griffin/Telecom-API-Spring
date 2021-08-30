@@ -90,6 +90,12 @@ public class TelecomController {
 		return new ResponseEntity<Users>(service.findById(1), HttpStatus.OK);
 	}
 	
+	@GetMapping("/getID={name}")
+	public ResponseEntity<Integer> getID(@PathVariable("name") String name) {
+		System.out.println("GET called");
+		return new ResponseEntity<Integer>(service.getCustomerID(name), HttpStatus.OK);
+	}
+	
 	// find all users
 	
 	
@@ -107,6 +113,12 @@ public class TelecomController {
 	public ResponseEntity<List<Device>> findByCustomerId(@PathVariable("customer_id") int customer_id) {
 		System.out.println("GET called");
 		return new ResponseEntity<List<Device>>(deviceservice.findByCustomerId(customer_id), HttpStatus.OK);
+	}
+	
+	@GetMapping("/DeviceCustomer={name}")
+	public ResponseEntity<List<Device>> findByCustomer(@PathVariable("name") String name) {
+		System.out.println("GET called");
+		return new ResponseEntity<List<Device>>(deviceservice.findByCustomer(name), HttpStatus.OK);
 	}
 	
 	@GetMapping("/attribute={attribute}/id={id}")

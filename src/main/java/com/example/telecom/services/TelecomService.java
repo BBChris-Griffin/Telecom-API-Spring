@@ -74,14 +74,10 @@ public class TelecomService {
 				System.out.println("not equal");
 				return false;
 			}
-
-		
-		
-		
-		
-		
-		
-		
+	}
+	
+	public Integer getCustomerID(String name) {
+		return repository.getCustomerID(name);
 	}
 	
 	

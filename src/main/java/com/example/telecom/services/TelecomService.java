@@ -24,6 +24,9 @@ public class TelecomService {
 	}
 	
 	public Users save(Users user) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String old = user.getPassword();
+		user.setPassword(encoder.encode(old));
 		return repository.save(user);
 	}
 	
@@ -66,11 +69,15 @@ public class TelecomService {
 		}
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		
+		System.out.println(password);
+		System.out.println(hash);
+
 		if(encoder.matches(password,hash)) {
+			System.out.println(encoder.encode(password));
 			System.out.println("is equal");
 			return true;
 			}else {
+				System.out.println(encoder.encode(password));
 				System.out.println("not equal");
 				return false;
 			}

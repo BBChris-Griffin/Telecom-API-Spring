@@ -34,12 +34,12 @@ public class CustomUserDetails implements UserDetails {
 		String password="1234";
 		String hash=user.getPassword();
 		
-		if(encoder.matches(password, hash)) {
-		System.out.println("is equal");
-		System.out.println(user.getPassword());
-		}else {
-			System.out.println("not equal");
-		}
+//		if(encoder.matches(password, hash)) {
+//		System.out.println("is equal");
+//		System.out.println(user.getPassword());
+//		}else {
+//			System.out.println("not equal");
+//		}
 		
 		//System.out.println(user.getName());
 	//	System.out.println(user.getRole());

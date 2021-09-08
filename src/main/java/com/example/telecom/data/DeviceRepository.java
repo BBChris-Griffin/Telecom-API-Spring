@@ -65,4 +65,12 @@ public interface DeviceRepository extends JpaRepository<Device,Integer> {
 	
 	@Query(value = "select count(phone_number) from device where customer_id = ?1", nativeQuery = true)
 	Integer getTotalDevicesByCustomer(int c_id);
+	
+	@Query(value = "select *\r\n"
+			+ "from device\r\n"
+			+ "where customer_id = \r\n"
+			+ "(select customer_id \r\n"
+			+ "from user\r\n"
+			+ "where name = ?1);", nativeQuery = true)
+	 List<Device> findByCustomer(String name);
 }

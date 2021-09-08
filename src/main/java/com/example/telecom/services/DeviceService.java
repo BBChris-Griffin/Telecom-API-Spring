@@ -153,4 +153,8 @@ public class DeviceService {
 	public int getTotalDevicesByCustomer(int c_id) {
 		return deviceRepository.getTotalDevicesByCustomer(c_id);
 	}
+	
+	public List<Device> findByCustomer(String name) {
+		return deviceRepository.findByCustomer(name);	
+	}
 }

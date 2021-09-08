@@ -24,6 +24,13 @@ public class TelecomService {
 	}
 	
 	public Users save(Users user) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		//System.out.println(old);
+		String password=user.getPassword();
+		password=encoder.encode(password);
+		System.out.println("the password that  is being saved in database "+password);
+		user.setPassword(password);
 		return repository.save(user);
 	}
 	
@@ -59,29 +66,31 @@ public class TelecomService {
 	}
 	
 	public boolean comparePassword2(String custom_id, String password) {
-		String hash = repository.getPassword(custom_id);
 		
 		if(custom_id==null) {
 			return false;
 		}
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String hash = repository.getPassword(custom_id);
 		
-		if(encoder.matches(password,hash)) {
+		String password2=password;
+		System.out.println(password2);
+		System.out.println(hash);
+
+		if(encoder.matches(password2,hash)) {
+			//System.out.println(encoder.encode(password));
 			System.out.println("is equal");
 			return true;
 			}else {
+				//System.out.println(encoder.encode(password));
 				System.out.println("not equal");
 				return false;
 			}
-
-		
-		
-		
-		
-		
-		
-		
+	}
+	
+	public Integer getCustomerID(String name) {
+		return repository.getCustomerID(name);
 	}
 	
 	

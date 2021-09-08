@@ -190,8 +190,8 @@ public class TelecomController {
 	@PostMapping("/Adduser")
 	public ResponseEntity<Users> save(@RequestBody @Valid Users user) {
 		System.out.println("POST called");
-		Users newUser = service.save(user);
-		System.out.println(newUser);
+		//Users newUser = service.save(user);
+		//System.out.println(newUser);
 		return new ResponseEntity<>(service.save(user), HttpStatus.CREATED);
 	}
 	
